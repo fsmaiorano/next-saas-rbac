@@ -6,12 +6,17 @@ import { User } from './models/user-model'
 type PermissionsByRole = (user: User, builder: AbilityBuilder<AppAbility>) => void
 
 export const permissions: Record<Role, PermissionsByRole> = {
-  admin(_, builder) {
+  admin(user, builder) {
     builder.can('manage', 'all')
+    builder.can(['transfer_ownership', 'update'], 'Organization', { ownerId: { $eq: user.id } })
+    builder.cannot(['transfer_ownership', 'update'], 'Organization')
   },
   member(user, builder) {
+    builder.can('get', 'User')
     builder.can(['create', 'get'], 'Project')
     builder.can(['update', 'delete'], 'Project', { ownerId: { $eq: user.id } })
   },
-  billing() {},
+  billing(_, builder) {
+    builder.can('manage', 'Billing')
+  },
 }

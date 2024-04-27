@@ -1,5 +1,6 @@
 @apiUrl= http://localhost:3333
 
+### Create User
 POST {{apiUrl}}/users
 Accept: application/json
 Content-Type: application/json

@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "prettier": "@saas/prettier-config"
+  "files": [
+    "library.js",
+    "node.js"
+  ],
+  "prettier": "@saas/prettier-config/library"
 }

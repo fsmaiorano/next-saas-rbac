@@ -1,0 +1,19 @@
+{
+  "name": "@saas/auth",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "devDependencies": {
+    "@saas/eslint-config": "*",
+    "@saas/prettier-config": "*",
+    "@saas/typescript-config": "*"
+  },
+  "eslintConfig": {
+    "extends": "@saas/eslint-config"
+  },
+  "prettier": "@saas/prettier-config",
+  "dependencies": {
+    "@casl/ability": "^6.7.1"
+  }
+}

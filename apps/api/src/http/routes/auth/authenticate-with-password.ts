@@ -3,15 +3,24 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 import { prisma } from '@/lib/prisma'
 import { compare } from 'bcryptjs'
-import * as repl from 'node:repl'
 
 export async function authenticateWithPassword(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/sessions/password', {
     schema: {
+      tags: ['auth'],
+      summary: 'Authenticate with email and password',
       body: z.object({
         email: z.string().email(),
         password: z.string().min(6),
       }),
+      response: {
+        200: z.object({
+          token: z.string(),
+        }),
+        401: z.object({
+          message: z.string(),
+        }),
+      },
     },
     handler: async (request, reply) => {
       const { email, password } = request.body

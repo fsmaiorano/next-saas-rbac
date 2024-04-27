@@ -1,11 +1,11 @@
-import { createMongoAbility, ForcedSubject, CreateAbility, MongoAbility, AbilityBuilder } from '@casl/ability'
+import { AbilityBuilder, CreateAbility, createMongoAbility, MongoAbility } from '@casl/ability'
 import { User } from './models/user-model'
 import { permissions } from './permissions'
 import { UserSubject } from './subjects/user-subject'
 import { ProjectSubject } from './subjects/project-subject'
 import { OrganizationSubject } from './subjects/organization-subject'
-import { BillingSubject } from './subjects/billing'
-import { InviteSubject } from './subjects/invite'
+import { BillingSubject } from './subjects/billing-subject'
+import { InviteSubject } from './subjects/invite-subject'
 
 type AppAbilities =
   | UserSubject
@@ -27,6 +27,9 @@ export function defineAbilityFor(user: User) {
 
   permissions[user.role](user, builder)
 
-  const ability = builder.build()
-  return ability
+  return builder.build({
+    detectSubjectType(subject) {
+      return subject.__typename
+    },
+  })
 }

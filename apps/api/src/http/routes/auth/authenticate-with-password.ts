@@ -3,6 +3,7 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 import { prisma } from '@/lib/prisma'
 import { compare } from 'bcryptjs'
+import { BadRequestError } from '@/http/routes/_errors/bad-request-error'
 
 export async function authenticateWithPassword(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/sessions/password', {
@@ -29,9 +30,7 @@ export async function authenticateWithPassword(app: FastifyInstance) {
       })
 
       if (!userFromEmail) {
-        return reply.status(401).send({
-          message: 'Invalid email or password',
-        })
+        throw new BadRequestError('Invalid email or password')
       }
 
       if (userFromEmail.passwordHash === null) {
@@ -43,9 +42,7 @@ export async function authenticateWithPassword(app: FastifyInstance) {
       const isPasswordValid = await compare(password, userFromEmail.passwordHash)
 
       if (!isPasswordValid) {
-        return reply.status(401).send({
-          message: 'Invalid email or password',
-        })
+        throw new BadRequestError('Invalid email or password')
       }
 
       const token = await reply.jwtSign(

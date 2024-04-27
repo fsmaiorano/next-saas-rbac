@@ -7,12 +7,14 @@ import { jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProv
 import { createAccount } from './routes/auth/create-account'
 import { authenticateWithPassword } from '@/http/routes/auth/authenticate-with-password'
 import { getProfile } from './routes/auth/get-profile'
+import { ErrorHandler } from '@/http/error-handler'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
 app.register(fastifyCors, {})
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
+app.setErrorHandler(ErrorHandler)
 
 app.register(fastifySwagger, {
   openapi: {

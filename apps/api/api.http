@@ -1,4 +1,5 @@
 @apiUrl= http://localhost:3333
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZTgyZWViNC1kNmE1LTQ4MWItOTA3Yi04MWQ2ODQzZWFjZTYiLCJlbWFpbCI6ImpvaG5kb2VAZW1haWwuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiYXZhdGFyVXJsIjpudWxsLCJpYXQiOjE3MTQyMzE1NTAsImV4cCI6MTcxNDgzNjM1MH0.4PJNkcsHEekNPwv2G2rkUdJ41jb2yBYtcNJPocHDWGc
 
 ### Create User
 POST {{apiUrl}}/users
@@ -13,6 +14,7 @@ Content-Type: application/json
 
 ###
 ### Authenticate user with password
+# @name Authentication
 POST {{apiUrl}}/sessions/password
 Accept: application/json
 Content-Type: application/json
@@ -21,3 +23,11 @@ Content-Type: application/json
   "email": "johndoe@email.com",
   "password": "123456"
 }
+
+###
+### Authenticate user with token and get profile
+GET {{apiUrl}}/profile
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+

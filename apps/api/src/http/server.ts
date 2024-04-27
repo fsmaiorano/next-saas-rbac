@@ -6,6 +6,7 @@ import fastifySwaggerUI from '@fastify/swagger-ui'
 import { jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProvider } from 'fastify-type-provider-zod'
 import { createAccount } from './routes/auth/create-account'
 import { authenticateWithPassword } from '@/http/routes/auth/authenticate-with-password'
+import { getProfile } from './routes/auth/get-profile'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -37,6 +38,7 @@ app.register(fastifyJwt, {
 
 app.register(createAccount)
 app.register(authenticateWithPassword)
+app.register(getProfile)
 
 app.listen({ port: 3333 }).then(() => {
   console.log('Server listening on port 3333')

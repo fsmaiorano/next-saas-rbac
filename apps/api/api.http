@@ -10,4 +10,14 @@ Content-Type: application/json
   "email": "johndoe@email.com",
   "password": "123456"
 }
+
 ###
+### Authenticate user with password
+POST {{apiUrl}}/sessions/password
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "johndoe@email.com",
+  "password": "123456"
+}

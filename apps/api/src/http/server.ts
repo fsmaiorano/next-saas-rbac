@@ -10,6 +10,8 @@ import { getProfile } from './routes/auth/get-profile'
 import { ErrorHandler } from '@/http/error-handler'
 import { requestPasswordRecover } from '@/http/routes/auth/request-password-recovery'
 import { resetPassword } from '@/http/routes/auth/reset-password'
+import { authenticateWithGithub } from '@/http/routes/auth/authenticate-with-github'
+import { env } from '@saas/env'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -26,7 +28,16 @@ app.register(fastifySwagger, {
       description:
         'This project contains all the necessary boilerplate to setup a multi-tenant SaaS with Next.js including authentication and RBAC authorization.',
     },
-    servers: [{ url: 'http://localhost:3333', description: 'Development server' }],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    servers: [{ url: `http://localhost:${env.SERVER_PORT}`, description: 'Development server' }],
   },
   transform: jsonSchemaTransform,
 })
@@ -36,8 +47,8 @@ app.register(fastifySwaggerUI, {
 })
 
 app.register(fastifyJwt, {
-  secret: 'jwt-secret-key',
-  sign: { expiresIn: '7d' },
+  secret: env.JWT_SECRET,
+  sign: { expiresIn: env.JWT_EXPIRES_IN },
 })
 
 app.register(createAccount)
@@ -45,7 +56,8 @@ app.register(authenticateWithPassword)
 app.register(getProfile)
 app.register(requestPasswordRecover)
 app.register(resetPassword)
+app.register(authenticateWithGithub)
 
-app.listen({ port: 3333 }).then(() => {
-  console.log('Server listening on port 3333')
+app.listen({ port: env.SERVER_PORT }).then(() => {
+  console.log(`Server listening on port ${env.SERVER_PORT}`)
 })

@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { prisma } from '@/lib/prisma'
 import { compare } from 'bcryptjs'
 import { BadRequestError } from '@/http/routes/_errors/bad-request-error'
+import { env } from '@saas/env'
 
 export async function authenticateWithPassword(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/sessions/password', {
@@ -53,7 +54,7 @@ export async function authenticateWithPassword(app: FastifyInstance) {
           avatarUrl: userFromEmail.avatarUrl,
         },
         {
-          expiresIn: '7d',
+          expiresIn: env.JWT_EXPIRES_IN,
         }
       )
 

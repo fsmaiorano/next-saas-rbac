@@ -209,3 +209,20 @@ Authorization : Bearer {{authToken}}
 {
   "inviteId": "4a4d158b-b841-4971-a821-1b607a66062d"
 }
+
+### Reject invite
+DELETE {{apiUrl}}/invite/{{inviteId}}/reject
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}
+
+### Revoke invite
+POST {{apiUrl}}/invite/{{inviteId}}
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}
+
+{
+  "slug" : "developer-organization",
+  "inviteId": "4a4d158b-b841-4971-a821-1b607a66062d"
+}

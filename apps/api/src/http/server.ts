@@ -31,6 +31,8 @@ import { createInvite } from './routes/invite/create-invite'
 import { getInviteById } from './routes/invite/get-invite-by-id'
 import { getInviteBySlug } from './routes/invite/get-invite-by-slug'
 import { acceptInvite } from './routes/invite/accept-invite'
+import { rejectInvite } from './routes/invite/reject-invite'
+import { revokeInvite } from './routes/invite/revoke-invite'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -95,6 +97,8 @@ app.register(createInvite)
 app.register(getInviteById)
 app.register(getInviteBySlug)
 app.register(acceptInvite)
+app.register(rejectInvite)
+app.register(revokeInvite)
 
 const serverPort = env.SERVER_PORT || 3333
 app.listen({ port: serverPort }).then(() => {

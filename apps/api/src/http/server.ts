@@ -12,13 +12,13 @@ import { requestPasswordRecover } from '@/http/routes/auth/request-password-reco
 import { resetPassword } from '@/http/routes/auth/reset-password'
 import { authenticateWithGithub } from '@/http/routes/auth/authenticate-with-github'
 import { env } from '@saas/env'
-import { createOrganization } from '@/http/routes/orgs/create-organization'
-import { getMembership } from '@/http/routes/orgs/get-membership'
-import { getOrganization } from '@/http/routes/orgs/get-organization'
-import { getOrganizationBySlug } from '@/http/routes/orgs/get-organization-by-slug'
-import { updateOrganization } from '@/http/routes/orgs/update-organization'
-import { deleteOrganization } from '@/http/routes/orgs/delete-organization'
-import { transferOrganization } from './routes/orgs/transfer-organization'
+import { createOrganization } from '@/http/routes/org/create-organization'
+import { getMembership } from '@/http/routes/org/get-membership'
+import { getOrganization } from '@/http/routes/org/get-organization'
+import { getOrganizationBySlug } from '@/http/routes/org/get-organization-by-slug'
+import { updateOrganization } from '@/http/routes/org/update-organization'
+import { deleteOrganization } from '@/http/routes/org/delete-organization'
+import { transferOrganization } from './routes/org/transfer-organization'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 

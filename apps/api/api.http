@@ -3,6 +3,7 @@
 @orgSlug = developer-organization
 @projectId = 489101e3-43ab-4d3f-8308-597fcb05fd31
 @projectSlug = project-1
+@memberId = 4a4d158b-b841-4971-a821-1b607a66062d
 
 #### User
 ###
@@ -156,3 +157,13 @@ GET {{apiUrl}}/organization/{{orgSlug}}/member
 Accept: application/json
 Content-Type: application/json
 Authorization : Bearer {{authToken}}
+
+### Update member 
+PUT {{apiUrl}}/organization/{{orgSlug}}/member/{{memberId}}
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}
+
+{
+  "role": "ADMIN"
+}

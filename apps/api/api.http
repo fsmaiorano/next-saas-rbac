@@ -137,3 +137,8 @@ Accept: application/json
 Content-Type: application/json
 Authorization : Bearer {{authToken}}
 
+### Get Projects
+GET {{apiUrl}}/organization/{{orgSlug}}/project
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}

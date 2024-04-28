@@ -175,7 +175,7 @@ Accept: application/json
 Content-Type: application/json
 Authorization : Bearer {{authToken}}
 
-#### Prisma
+#### Invite
 ###
 ### Create invite
 POST {{apiUrl}}/organization/{{orgSlug}}/invite
@@ -226,3 +226,17 @@ Authorization : Bearer {{authToken}}
   "slug" : "developer-organization",
   "inviteId": "4a4d158b-b841-4971-a821-1b607a66062d"
 }
+
+### Get pending invites
+GET {{apiUrl}}/pending-invites
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}
+
+### Billing
+##
+### Get organization billing
+GET {{apiUrl}}/organization/{{orgSlug}}/billing
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}

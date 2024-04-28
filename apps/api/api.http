@@ -70,3 +70,17 @@ GET {{apiUrl}}/organization/{{slug}}/membership
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
+
+### Get organization by slug
+GET {{apiUrl}}/organization/{{slug}}
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### Get organization 
+GET {{apiUrl}}/organization
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+

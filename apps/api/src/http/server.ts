@@ -14,6 +14,8 @@ import { authenticateWithGithub } from '@/http/routes/auth/authenticate-with-git
 import { env } from '@saas/env'
 import { createOrganization } from '@/http/routes/orgs/create-organization'
 import { getMembership } from '@/http/routes/orgs/get-membership'
+import { getOrganization } from '@/http/routes/orgs/get-organization'
+import { getOrganizationBySlug } from '@/http/routes/orgs/get-organization-by-slug'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -61,6 +63,8 @@ app.register(resetPassword)
 app.register(authenticateWithGithub)
 app.register(createOrganization)
 app.register(getMembership)
+app.register(getOrganizationBySlug)
+app.register(getOrganization)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log(`Server listening on port ${env.SERVER_PORT}`)

@@ -1,5 +1,5 @@
 @apiUrl= http://localhost:3333
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZTEzYzZkMS1jNTJmLTRhNWMtYmM5Zi00YzE0YTQyYzBlNTIiLCJlbWFpbCI6ImpvaG5kb2VAZW1haWwuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiYXZhdGFyVXJsIjpudWxsLCJpYXQiOjE3MTQzMDU1MDMsImV4cCI6MTcxNDM5MTkwM30.k0AcG70LD8eR_DdUKFj3-bYeclqnGcinIYLMVMn2Kxo
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZTEzYzZkMS1jNTJmLTRhNWMtYmM5Zi00YzE0YTQyYzBlNTIiLCJlbWFpbCI6ImpvaG5kb2VAZW1haWwuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiYXZhdGFyVXJsIjpudWxsLCJpYXQiOjE3MTQzMDkyOTQsImV4cCI6MTcxNDM5NTY5NH0.gH636SJqueBPnR1JR6IqI9HfPiM3PszF2C_XLtF99es
 @slug = developer-organization
 
 #### User
@@ -16,7 +16,6 @@ Content-Type: application/json
 }
 
 #### Authentication
-
 ###
 ### Authenticate user with password
 # @name Authentication
@@ -50,7 +49,6 @@ Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 #### Organization
-
 ###
 ### Create Organization
 POST {{apiUrl}}/organization
@@ -93,5 +91,21 @@ Authorization: Bearer {{authToken}}
   "name": "Developer Organization Updated",
   "domain": "developer-organization.com",
   "shouldAttachUsersByDomain": true
+}
+
+### Delete organization
+DELETE {{apiUrl}}/organization/{{slug}}
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### Transfer organization
+POST {{apiUrl}}/organization/{{slug}}/transfer
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}
+
+{
+  "transferToUserId": "e13c6d1-c52f-4a5c-bc9f-4c14a42c0e52"
 }
 

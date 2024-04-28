@@ -1,6 +1,7 @@
 @apiUrl= http://localhost:3333
 @authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZTEzYzZkMS1jNTJmLTRhNWMtYmM5Zi00YzE0YTQyYzBlNTIiLCJlbWFpbCI6ImpvaG5kb2VAZW1haWwuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiYXZhdGFyVXJsIjpudWxsLCJpYXQiOjE3MTQzMDkyOTQsImV4cCI6MTcxNDM5NTY5NH0.gH636SJqueBPnR1JR6IqI9HfPiM3PszF2C_XLtF99es
 @slug = developer-organization
+@projectId = 489101e3-43ab-4d3f-8308-597fcb05fd31
 
 #### User
 ###
@@ -122,3 +123,9 @@ Authorization : Bearer {{authToken}}
   "description": "Project 1 description",
   "organizationSlug": "developer-organization"
 }
+
+### Delete Project
+DELETE {{apiUrl}}/organization/{{slug}}/project/{{projectId}}
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}

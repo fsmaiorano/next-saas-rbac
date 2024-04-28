@@ -83,4 +83,15 @@ Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
+### Update organization
+PUT {{apiUrl}}/organization/{{slug}}
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Developer Organization Updated",
+  "domain": "developer-organization.com",
+  "shouldAttachUsersByDomain": true
+}
 

@@ -3,7 +3,7 @@
 @slug = developer-organization
 
 #### User
-
+###
 ### Create User
 POST {{apiUrl}}/users
 Accept: application/json
@@ -109,3 +109,16 @@ Authorization : Bearer {{authToken}}
   "transferToUserId": "e13c6d1-c52f-4a5c-bc9f-4c14a42c0e52"
 }
 
+#### Project
+###
+### Create Project
+POST {{apiUrl}}/organization/{{slug}}/project
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}
+
+{
+  "name": "Project 1",
+  "description": "Project 1 description",
+  "organizationSlug": "developer-organization"
+}

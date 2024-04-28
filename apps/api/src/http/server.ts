@@ -19,6 +19,7 @@ import { getOrganizationBySlug } from '@/http/routes/org/get-organization-by-slu
 import { updateOrganization } from '@/http/routes/org/update-organization'
 import { deleteOrganization } from '@/http/routes/org/delete-organization'
 import { transferOrganization } from './routes/org/transfer-organization'
+import { createProject } from './routes/project/create-project'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -71,6 +72,7 @@ app.register(getOrganization)
 app.register(updateOrganization)
 app.register(deleteOrganization)
 app.register(transferOrganization)
+app.register(createProject)
 
 const serverPort = env.SERVER_PORT || 3333
 app.listen({ port: serverPort }).then(() => {

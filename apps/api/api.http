@@ -25,9 +25,21 @@ Content-Type: application/json
 }
 
 ###
+### Authenticate with github
+# @name AuthenticationGithub
+# @description Authenticate user with github
+# https://github.com/login/oauth/authorize?client_id={{github_client_id}}&redirect_uri=http://localhost:3000/api/auth/callback&scope=user:email
+POST {{apiUrl}}/sessions/github
+Accept: application/json
+Content-Type: application/json
+
+{
+  "code": "5876db580b98d22f470b"
+}
+
+###
 ### Authenticate user with token and get profile
 GET {{apiUrl}}/profile
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
-

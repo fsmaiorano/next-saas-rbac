@@ -1,7 +1,8 @@
 @apiUrl= http://localhost:3333
 @authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZTEzYzZkMS1jNTJmLTRhNWMtYmM5Zi00YzE0YTQyYzBlNTIiLCJlbWFpbCI6ImpvaG5kb2VAZW1haWwuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiYXZhdGFyVXJsIjpudWxsLCJpYXQiOjE3MTQzMDkyOTQsImV4cCI6MTcxNDM5NTY5NH0.gH636SJqueBPnR1JR6IqI9HfPiM3PszF2C_XLtF99es
-@slug = developer-organization
+@orgSlug = developer-organization
 @projectId = 489101e3-43ab-4d3f-8308-597fcb05fd31
+@projectSlug = project-1
 
 #### User
 ###
@@ -65,13 +66,13 @@ Authorization: Bearer {{authToken}}
 
 ### Get membership by organization
 
-GET {{apiUrl}}/organization/{{slug}}/membership
+GET {{apiUrl}}/organization/{{orgSlug}}/membership
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 ### Get organization by slug
-GET {{apiUrl}}/organization/{{slug}}
+GET {{apiUrl}}/organization/{{orgSlug}}
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
@@ -83,7 +84,7 @@ Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 ### Update organization
-PUT {{apiUrl}}/organization/{{slug}}
+PUT {{apiUrl}}/organization/{{orgSlug}}
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
@@ -95,13 +96,13 @@ Authorization: Bearer {{authToken}}
 }
 
 ### Delete organization
-DELETE {{apiUrl}}/organization/{{slug}}
+DELETE {{apiUrl}}/organization/{{orgSlug}}
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 ### Transfer organization
-POST {{apiUrl}}/organization/{{slug}}/transfer
+POST {{apiUrl}}/organization/{{orgSlug}}/transfer
 Accept: application/json
 Content-Type: application/json
 Authorization : Bearer {{authToken}}
@@ -113,7 +114,7 @@ Authorization : Bearer {{authToken}}
 #### Project
 ###
 ### Create Project
-POST {{apiUrl}}/organization/{{slug}}/project
+POST {{apiUrl}}/organization/{{orgSlug}}/project
 Accept: application/json
 Content-Type: application/json
 Authorization : Bearer {{authToken}}
@@ -125,7 +126,14 @@ Authorization : Bearer {{authToken}}
 }
 
 ### Delete Project
-DELETE {{apiUrl}}/organization/{{slug}}/project/{{projectId}}
+DELETE {{apiUrl}}/organization/{{orgSlug}}/project/{{projectId}}
 Accept: application/json
 Content-Type: application/json
 Authorization : Bearer {{authToken}}
+
+### Get Project
+GET {{apiUrl}}/organization/{{orgSlug}}/project/{{projectSlug}}
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}
+

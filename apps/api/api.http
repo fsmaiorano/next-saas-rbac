@@ -142,3 +142,17 @@ GET {{apiUrl}}/organization/{{orgSlug}}/project
 Accept: application/json
 Content-Type: application/json
 Authorization : Bearer {{authToken}}
+
+### Update Project
+PUT {{apiUrl}}/organization/{{orgSlug}}/project/{{projectId}}
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}
+
+#### Member
+###
+### Get members by organization
+GET {{apiUrl}}/organization/{{orgSlug}}/member
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}

@@ -188,8 +188,14 @@ Authorization : Bearer {{authToken}}
   "role": "ADMIN"
 }
 
-### Get invite
+### Get invite by id
 GET {{apiUrl}}/invite/{{inviteId}}
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}
+
+### Get invite by slug
+GET {{apiUrl}}/organization/{{orgSlug}}/invite
 Accept: application/json
 Content-Type: application/json
 Authorization : Bearer {{authToken}}

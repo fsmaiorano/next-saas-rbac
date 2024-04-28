@@ -28,7 +28,8 @@ import { getMember } from './routes/member/get-member'
 import { updateMember } from './routes/member/update-member'
 import { deleteMember } from './routes/member/delete-member'
 import { createInvite } from './routes/invite/create-invite'
-import { getInvite } from './routes/invite/get-invite'
+import { getInviteById } from './routes/invite/get-invite-by-id'
+import { getInviteBySlug } from './routes/invite/get-invite-by-slug'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -90,7 +91,8 @@ app.register(getMember)
 app.register(updateMember)
 app.register(deleteMember)
 app.register(createInvite)
-app.register(getInvite)
+app.register(getInviteById)
+app.register(getInviteBySlug)
 
 const serverPort = env.SERVER_PORT || 3333
 app.listen({ port: serverPort }).then(() => {

@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { BadRequestError } from '@/http/routes/_errors/bad-request-error'
 import { prisma } from '@/lib/prisma'
 
-export async function getInvite(app: FastifyInstance) {
+export async function getInviteById(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get(
     '/invite/:inviteId',
     {

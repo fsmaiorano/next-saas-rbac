@@ -29,7 +29,7 @@ export async function getProject(app: FastifyInstance) {
                   description: z.string(),
                   name: z.string(),
                   slug: z.string(),
-                  avatarUrl: z.string().nullable(),
+                  avatarUrl: z.string().url().nullable(),
                   organizationId: z.string().uuid(),
                   ownerId: z.string().uuid(),
                   createdAt: z.date(),

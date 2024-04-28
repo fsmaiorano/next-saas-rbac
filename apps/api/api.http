@@ -173,3 +173,16 @@ DELETE {{apiUrl}}/organization/{{orgSlug}}/member/{{memberId}}
 Accept: application/json
 Content-Type: application/json
 Authorization : Bearer {{authToken}}
+
+#### Prisma
+###
+### Create invite
+POST {{apiUrl}}/organization/{{orgSlug}}/invite
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}
+
+{
+  "email": "test@email.com",
+  "role": "ADMIN"
+}

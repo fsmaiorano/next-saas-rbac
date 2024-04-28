@@ -1,5 +1,6 @@
 @apiUrl= http://localhost:3333
 @authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZTEzYzZkMS1jNTJmLTRhNWMtYmM5Zi00YzE0YTQyYzBlNTIiLCJlbWFpbCI6ImpvaG5kb2VAZW1haWwuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiYXZhdGFyVXJsIjpudWxsLCJpYXQiOjE3MTQzMDU1MDMsImV4cCI6MTcxNDM5MTkwM30.k0AcG70LD8eR_DdUKFj3-bYeclqnGcinIYLMVMn2Kxo
+@slug = developer-organization
 
 #### User
 
@@ -63,3 +64,9 @@ Authorization: Bearer {{authToken}}
   "shouldAttachUsersByDomain": true
 }
 
+### Get membership by organization
+
+GET {{apiUrl}}/organization/{{slug}}/membership
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{authToken}}

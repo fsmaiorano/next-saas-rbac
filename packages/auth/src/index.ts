@@ -18,6 +18,7 @@ type AppAbilities =
 export * from './models/organization-model.ts'
 export * from './models/project-model.ts'
 export * from './models/user-model.ts'
+export * from './models/role-model.ts'
 
 export type AppAbility = MongoAbility<AppAbilities>
 export const createAppAbility = createMongoAbility as CreateAbility<AppAbility>

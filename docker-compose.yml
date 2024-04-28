@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres:
-    container_name: database-pg
+    container_name: saas
     image: bitnami/postgresql:latest
     ports:
       - "5432:5432"

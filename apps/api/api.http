@@ -1,5 +1,7 @@
 @apiUrl= http://localhost:3333
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZTEzYzZkMS1jNTJmLTRhNWMtYmM5Zi00YzE0YTQyYzBlNTIiLCJlbWFpbCI6ImpvaG5kb2VAZW1haWwuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiYXZhdGFyVXJsIjpudWxsLCJpYXQiOjE3MTQyOTg1MzcsImV4cCI6MTcxNDkwMzMzN30.cwxf41kaohOT_2aU0cTqJHI_OLOvm-DMmhul2pt0ikc
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZTEzYzZkMS1jNTJmLTRhNWMtYmM5Zi00YzE0YTQyYzBlNTIiLCJlbWFpbCI6ImpvaG5kb2VAZW1haWwuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiYXZhdGFyVXJsIjpudWxsLCJpYXQiOjE3MTQzMDU1MDMsImV4cCI6MTcxNDM5MTkwM30.k0AcG70LD8eR_DdUKFj3-bYeclqnGcinIYLMVMn2Kxo
+
+#### User
 
 ### Create User
 POST {{apiUrl}}/users
@@ -11,6 +13,8 @@ Content-Type: application/json
   "email": "johndoe@email.com",
   "password": "123456"
 }
+
+#### Authentication
 
 ###
 ### Authenticate user with password
@@ -43,3 +47,19 @@ GET {{apiUrl}}/profile
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
+
+#### Organization
+
+###
+### Create Organization
+POST {{apiUrl}}/organization
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Developer Organization",
+  "domain": "developer-organization.com",
+  "shouldAttachUsersByDomain": true
+}
+

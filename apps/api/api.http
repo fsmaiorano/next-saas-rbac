@@ -167,3 +167,9 @@ Authorization : Bearer {{authToken}}
 {
   "role": "ADMIN"
 }
+
+### Delete member
+DELETE {{apiUrl}}/organization/{{orgSlug}}/member/{{memberId}}
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}

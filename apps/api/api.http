@@ -4,6 +4,7 @@
 @projectId = 489101e3-43ab-4d3f-8308-597fcb05fd31
 @projectSlug = project-1
 @memberId = 4a4d158b-b841-4971-a821-1b607a66062d
+@inviteId = 4a4d158b-b841-4971-a821-1b607a66062d
 
 #### User
 ###
@@ -186,3 +187,9 @@ Authorization : Bearer {{authToken}}
   "email": "test@email.com",
   "role": "ADMIN"
 }
+
+### Get invite
+GET {{apiUrl}}/invite/{{inviteId}}
+Accept: application/json
+Content-Type: application/json
+Authorization : Bearer {{authToken}}

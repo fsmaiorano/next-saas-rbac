@@ -7,9 +7,15 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 
+import { signInWithEmailAndPassword } from './actions'
+
 export default function SignInPage() {
   return (
-    <form action={''} method={''} className={'space-y-4'}>
+    <form
+      action={signInWithEmailAndPassword}
+      method={''}
+      className={'space-y-4'}
+    >
       <div className="space-y-1">
         <Label>E-mail</Label>
         <Input type={'email'} name="email" id="email" />
@@ -27,7 +33,11 @@ export default function SignInPage() {
       </div>
 
       <Button type={'submit'} className="w-full">
-        Sign in
+        Sign in with e-mail
+      </Button>
+
+      <Button variant="link" className="w-full" asChild>
+        <Link href={'/auth/sign-up'}>Create new account</Link>
       </Button>
 
       <Separator />

@@ -3,6 +3,7 @@ import { AlertTriangle, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { type FormEvent, useState, useTransition } from 'react'
+import { requestFormReset } from 'react-dom'
 
 import githubIcon from '@/assets/github-icon.svg'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -33,6 +34,10 @@ export function SignInForm() {
     startTransition(async () => {
       const state = await signInWithEmailAndPassword(data)
       setFormState(state)
+
+      if (state.success) {
+        requestFormReset(form)
+      }
     })
   }
 

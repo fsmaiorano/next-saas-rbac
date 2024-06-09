@@ -2,8 +2,6 @@
 import { AlertTriangle, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { type FormEvent, useState, useTransition } from 'react'
-import { requestFormReset } from 'react-dom'
 
 import githubIcon from '@/assets/github-icon.svg'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -11,53 +9,32 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
+import { useFormState } from '@/hooks/use-form-state'
 
 import { signInWithEmailAndPassword } from './actions'
 
 export function SignInForm() {
-  const [isPending, startTransition] = useTransition()
-  const [formState, setFormState] = useState<{
-    success: boolean
-    message: string | null
-    errors: Record<string, string[]> | null
-  }>({
-    success: false,
-    message: null,
-    errors: null,
-  })
-
-  async function handleSignIn(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const form = event.currentTarget
-    const data = new FormData(form)
-
-    startTransition(async () => {
-      const state = await signInWithEmailAndPassword(data)
-      setFormState(state)
-
-      if (state.success) {
-        requestFormReset(form)
-      }
-    })
-  }
+  const [{ success, message, errors }, handleSignIn, isPending] = useFormState(
+    signInWithEmailAndPassword,
+  )
 
   return (
     <form onSubmit={handleSignIn} method={''} className={'space-y-4'}>
-      {formState.success === false && formState.message && (
+      {success === false && message && (
         <Alert variant="destructive">
           <AlertTriangle className="size-4 mr-2" />
           <AlertTitle>Sign in failed</AlertTitle>
           <AlertDescription>
-            <p>{formState.message}</p>
+            <p>{message}</p>
           </AlertDescription>
         </Alert>
       )}
       <div className="space-y-1">
         <Label>E-mail</Label>
         <Input type={'email'} name="email" id="email" />
-        {formState.errors?.email && (
+        {errors?.email && (
           <p className="text-xs font-medium text-red-500 dark:text-red-400">
-            {formState.errors.email[0]}
+            {errors.email[0]}
           </p>
         )}
       </div>
@@ -65,9 +42,9 @@ export function SignInForm() {
       <div className="space-y-1">
         <Label>Password</Label>
         <Input type={'password'} name="password" id="password" />
-        {formState.errors?.password && (
+        {errors?.password && (
           <p className="text-xs font-medium text-red-500 dark:text-red-400">
-            {formState.errors.password[0]}
+            {errors.password[0]}
           </p>
         )}
         <Link

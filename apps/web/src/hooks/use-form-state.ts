@@ -6,14 +6,13 @@ interface FormState {
   errors: Record<string, string[]> | null
 }
 
-export function useFormState<FormState>(
+export function useFormState(
   action: (data: FormData) => Promise<FormState>,
-  initialState?: FormState,
+  onSuccess: () => Promise<void> | void,
+  initialState?: FormState
 ) {
   const [isPending, startTransition] = useTransition()
-  const [formState, setFormState] = useState<FormState>(
-    initialState ?? { success: false, message: null, errors: null },
-  )
+  const [formState, setFormState] = useState<FormState>(initialState ?? { success: false, message: null, errors: null })
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -22,6 +21,10 @@ export function useFormState<FormState>(
 
     startTransition(async () => {
       const state = await action(data)
+
+      if (state.success && onSuccess) {
+        await onSuccess()
+      }
       setFormState(state)
     })
   }

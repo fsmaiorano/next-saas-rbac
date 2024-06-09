@@ -2,7 +2,7 @@
 import { AlertTriangle, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useActionState } from 'react'
+import { type FormEvent, useState, useTransition } from 'react'
 
 import githubIcon from '@/assets/github-icon.svg'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -14,32 +14,45 @@ import { Separator } from '@/components/ui/separator'
 import { signInWithEmailAndPassword } from './actions'
 
 export function SignInForm() {
-  const [state, formAction, isPending] = useActionState(
-    signInWithEmailAndPassword,
-    {
-      success: false,
-      message: null,
-      errors: null,
-    },
-  )
+  const [isPending, startTransition] = useTransition()
+  const [formState, setFormState] = useState<{
+    success: boolean
+    message: string | null
+    errors: Record<string, string[]> | null
+  }>({
+    success: false,
+    message: null,
+    errors: null,
+  })
+
+  async function handleSignIn(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const form = event.currentTarget
+    const data = new FormData(form)
+
+    startTransition(async () => {
+      const state = await signInWithEmailAndPassword(data)
+      setFormState(state)
+    })
+  }
 
   return (
-    <form action={formAction} method={''} className={'space-y-4'}>
-      {state.success === false && state.message && (
+    <form onSubmit={handleSignIn} method={''} className={'space-y-4'}>
+      {formState.success === false && formState.message && (
         <Alert variant="destructive">
           <AlertTriangle className="size-4 mr-2" />
           <AlertTitle>Sign in failed</AlertTitle>
           <AlertDescription>
-            <p>{state.message}</p>
+            <p>{formState.message}</p>
           </AlertDescription>
         </Alert>
       )}
       <div className="space-y-1">
         <Label>E-mail</Label>
         <Input type={'email'} name="email" id="email" />
-        {state.errors?.email && (
+        {formState.errors?.email && (
           <p className="text-xs font-medium text-red-500 dark:text-red-400">
-            {state.errors.email[0]}
+            {formState.errors.email[0]}
           </p>
         )}
       </div>
@@ -47,9 +60,9 @@ export function SignInForm() {
       <div className="space-y-1">
         <Label>Password</Label>
         <Input type={'password'} name="password" id="password" />
-        {state.errors?.password && (
+        {formState.errors?.password && (
           <p className="text-xs font-medium text-red-500 dark:text-red-400">
-            {state.errors.password[0]}
+            {formState.errors.password[0]}
           </p>
         )}
         <Link

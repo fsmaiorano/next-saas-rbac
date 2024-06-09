@@ -12,15 +12,17 @@ import { Separator } from '@/components/ui/separator'
 import { useFormState } from '@/hooks/use-form-state'
 
 import { signInWithEmailAndPassword } from './actions'
+import { useRouter } from 'next/navigation'
 
 export function SignInForm() {
-  const [{ success, message, errors }, handleSignIn, isPending] = useFormState(
-    signInWithEmailAndPassword,
-  )
+  const router = useRouter()
+  const [{ success, message, errors }, handleSignIn, isPending] = useFormState(signInWithEmailAndPassword, () => {
+    router.push('/')
+  })
 
   return (
     <form onSubmit={handleSignIn} method={''} className={'space-y-4'}>
-      {success === false && message && (
+      {!success && message && (
         <Alert variant="destructive">
           <AlertTriangle className="size-4 mr-2" />
           <AlertTitle>Sign in failed</AlertTitle>
@@ -32,25 +34,14 @@ export function SignInForm() {
       <div className="space-y-1">
         <Label>E-mail</Label>
         <Input type={'email'} name="email" id="email" />
-        {errors?.email && (
-          <p className="text-xs font-medium text-red-500 dark:text-red-400">
-            {errors.email[0]}
-          </p>
-        )}
+        {errors?.email && <p className="text-xs font-medium text-red-500 dark:text-red-400">{errors.email[0]}</p>}
       </div>
 
       <div className="space-y-1">
         <Label>Password</Label>
         <Input type={'password'} name="password" id="password" />
-        {errors?.password && (
-          <p className="text-xs font-medium text-red-500 dark:text-red-400">
-            {errors.password[0]}
-          </p>
-        )}
-        <Link
-          href={'/auth/forgot-password'}
-          className="text-xs font-medium text-foreground hover:underline"
-        >
+        {errors?.password && <p className="text-xs font-medium text-red-500 dark:text-red-400">{errors.password[0]}</p>}
+        <Link href={'/auth/forgot-password'} className="text-xs font-medium text-foreground hover:underline">
           Forgot password?
         </Link>
       </div>
@@ -66,11 +57,7 @@ export function SignInForm() {
       <Separator />
 
       <Button type={'submit'} className="w-full" variant="outline">
-        <Image
-          src={githubIcon}
-          alt="GitHub icon"
-          className="mr-2 size-4 dark:invert"
-        />
+        <Image src={githubIcon} alt="GitHub icon" className="mr-2 size-4 dark:invert" />
         Sign in with GitHub
       </Button>
     </form>

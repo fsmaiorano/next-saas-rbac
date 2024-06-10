@@ -12,12 +12,13 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Link from 'next/link'
 import { getOrganization } from '@/http/get-organization'
 import { cookies } from 'next/headers'
+import { getCurrentOrganization } from '@/auth/auth'
 
 export default async function OrganizationSwitcher() {
-  const currentOrg = cookies().get('org')?.value
+  const currentOrg = getCurrentOrganization()
   const { organizations } = await getOrganization()
 
-  const currentOrganization = organizations.find((org) => org.slug === currentOrg)
+  const currentOrganization = currentOrg !== null ? organizations.find((org) => org.slug === currentOrg) : null
 
   return (
     <DropdownMenu>

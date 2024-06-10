@@ -5,7 +5,8 @@
   "license": "MIT",
   "files": [
     "library.js",
-    "node.js"
+    "node.js",
+    "next.js"
   ],
   "prettier": "@saas/prettier-config/library"
 }

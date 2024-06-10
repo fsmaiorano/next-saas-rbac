@@ -2,6 +2,71 @@
 
 This project contains all the necessary boilerplate to setup a multi-tenant SaaS with Next.js including authentication and RBAC authorization.
 
+## How to run
+
+### Prerequisites
+
+- Node.js 14.x
+- Yarn 1.x
+- Docker
+- Docker Compose
+- Git
+- GitHub account
+- GitHub OAuth application
+
+### Setup
+
+1. Clone the repository:
+
+```bash
+git clone
+```
+
+2. Install dependencies:
+
+```bash
+yarn
+```
+
+3. Create a `.env` file based on `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+4. Fill in the environment variables:
+
+```bash
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/saas?schema=public"
+GITHUB_OAUTH_CLIENT_ID=""
+GITHUB_OAUTH_CLIENT_SECRET=""
+GITHUB_OAUTH_REDIRECT_URL="http://localhost:3000/api/auth/callback"
+JWT_SECRET="jwtSecretKey"
+JWT_EXPIRES_IN="1d"
+NEXT_PUBLIC_API_URL="http://localhost:3333"
+```
+
+5. Start the database:
+
+```bash
+docker-compose up -d
+```
+
+6. Run the migrations:
+
+```bash
+yarn prisma migrate dev
+```
+
+7. Start the development server:
+
+```bash
+yarn dev
+```
+
+8. Access the application at `http://localhost:3000`.
+9. Access the API at `http://localhost:3333`.
+
 ## Features
 
 ### Authentication

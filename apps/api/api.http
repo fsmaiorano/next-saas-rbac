@@ -1,5 +1,5 @@
 @apiUrl= http://localhost:3333
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZTEzYzZkMS1jNTJmLTRhNWMtYmM5Zi00YzE0YTQyYzBlNTIiLCJlbWFpbCI6ImpvaG5kb2VAZW1haWwuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiYXZhdGFyVXJsIjpudWxsLCJpYXQiOjE3MTQzMDkyOTQsImV4cCI6MTcxNDM5NTY5NH0.gH636SJqueBPnR1JR6IqI9HfPiM3PszF2C_XLtF99es
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkNzQ4YWQ2Yy1iNjMzLTRhOWQtYTU3MS1kY2M2NTVkMzk3ZGIiLCJlbWFpbCI6ImpvaG5AYWNtZS5jb20iLCJuYW1lIjoiSm9obiBEb2UiLCJhdmF0YXJVcmwiOiJodHRwczovL2F2YXRhcnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvNjUyNzY1NDMiLCJpYXQiOjE3MTgwMTc1NjEsImV4cCI6MTcxODEwMzk2MX0.fGJpv0J3f4AEi-jXuW3f_gY-hAqfU1-3gKfd1b6Bpok
 @orgSlug = developer-organization
 @projectId = 489101e3-43ab-4d3f-8308-597fcb05fd31
 @projectSlug = project-1
@@ -28,7 +28,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "email": "johndoe@email.com",
+  "email": "john@acme.com",
   "password": "123456"
 }
 

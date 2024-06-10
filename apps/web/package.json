@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "yarn env:load next dev --turbo",
+    "build": "yarn env:load next build",
+    "start": "yarn env:load next start",
+    "lint": "yarn env:load next lint",
+    "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.4",
@@ -38,6 +39,7 @@
     "alert": "^6.0.1",
     "avatar": "^0.1.0",
     "button": "^1.1.1",
+    "dotenv-cli": "^7.4.2",
     "dropdown-menu": "^0.1.1",
     "eslint": "^8",
     "eslint-config-next": "15.0.0-rc.0",

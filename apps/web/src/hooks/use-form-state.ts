@@ -8,7 +8,7 @@ interface IFormState {
 
 export function useFormState(
   action: (data: FormData) => Promise<IFormState>,
-  onSuccess: () => Promise<void> | void,
+  onSuccess?: () => Promise<void> | void,
   initialState?: IFormState
 ) {
   const [isPending, startTransition] = useTransition()

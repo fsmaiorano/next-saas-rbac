@@ -10,8 +10,11 @@ import {
 import { ChevronsUpDown, PlusCircle } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Link from 'next/link'
+import { getOrganization } from '@/http/get-organization'
 
-export default function OrganizationSwitcher() {
+export default async function OrganizationSwitcher() {
+  const { organizations } = await getOrganization()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex w-[168px] items-center gap-2 rounded p-1 text-sm font-medium outline-none focus-visible:ring-2 focus-visible:ring-primary">
@@ -20,19 +23,27 @@ export default function OrganizationSwitcher() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" alignOffset={-16} sideOffset={12} className="w-[200px]">
         <DropdownMenuGroup>
-          <DropdownMenuLabel className="cursor-default">Organizations</DropdownMenuLabel>
-          <DropdownMenuItem className="cursor-pointer">
-            <Avatar className="mr-2 size-5">
-              <AvatarImage src="https://github.com/fsmaiorano.png" alt="avatar" />
-              <AvatarFallback />
-            </Avatar>
-            <span className="line-clamp-1">fsmaiorano</span>
-          </DropdownMenuItem>
+          <DropdownMenuLabel>Organizations</DropdownMenuLabel>
+          {organizations.map((organization) => {
+            return (
+              <DropdownMenuItem key={organization.id} asChild>
+                <Link href={`/org/${organization.slug}`}>
+                  <Avatar className="mr-2 size-4">
+                    {organization.avatarUrl && <AvatarImage src={organization.avatarUrl} />}
+                    <AvatarFallback />
+                  </Avatar>
+                  <span className="line-clamp-1">{organization.name}</span>
+                </Link>
+              </DropdownMenuItem>
+            )
+          })}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer">
-          <PlusCircle className="mr-2 size-5 text-primary" />
-          <Link href="/create-organization">Create new</Link>
+        <DropdownMenuItem asChild>
+          <Link href="/create-organization">
+            <PlusCircle className="mr-2 size-4" />
+            Create new
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

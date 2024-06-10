@@ -6,7 +6,7 @@ import ProfileButton from '@/components/profile-button'
 import { Slash } from 'lucide-react'
 import OrganizationSwitcher from '@/components/organization-switcher'
 
-export default async function Header() {
+export default  function Header() {
   return (
     <header className="mx-auto flex max-w-[1200px] items-center justify-between">
       <div className="flex items-center gap-3">
